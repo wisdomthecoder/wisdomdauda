@@ -33,9 +33,12 @@ class About extends StatelessWidget {
                       opacity: .4,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(40),
-                        child: Image.asset(
-                          'assets/background/pic2.jpg',
-                          alignment: Alignment.centerRight,
+                        child: Hero(
+                          tag: '1',
+                          child: Image.asset(
+                            'assets/background/pic2.jpg',
+                            alignment: Alignment.centerRight,
+                          ),
                         ),
                       ),
                     ),
@@ -47,6 +50,7 @@ class About extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Spacer(),
                         Spacer(),
                         SelectableText(
                           'About Me',
@@ -74,7 +78,9 @@ class About extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                   text: ' Engineer(Flutter)',
-                                  style: TextStyle(color: Colors.pinkAccent)),
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.pinkAccent.shade200)),
                             ],
                           ),
                         ),
@@ -104,19 +110,20 @@ class About extends StatelessWidget {
                           child: DefaultTextStyle(
                             style: GoogleFonts.poppins(
                                 fontSize: 30.0,
-                                color: Color.fromARGB(255, 255, 184, 208)),
+                                color: Color.fromARGB(255, 136, 136, 136)),
                             child: AnimatedTextKit(
                               repeatForever: true,
                               isRepeatingAnimation: true,
                               animatedTexts: [
-                                ScaleAnimatedText('I am a Computer Expert'),
-                                ScaleAnimatedText(
-                                    'I can Create your Mobile App'),
-                                ScaleAnimatedText('I Create can your Website'),
-                                ScaleAnimatedText('Feel free to Chat with Me'),
-                                ScaleAnimatedText(
-                                    'I use  Flutter and React for Mobile Apps'),
-                                ScaleAnimatedText('I\'m  17 years young'),
+                                TyperAnimatedText('I am an Expert...'),
+                                TyperAnimatedText(
+                                    'I can Create your Mobile App..'),
+                                TyperAnimatedText(
+                                    'I Create can your Website...'),
+                                TyperAnimatedText('Feel free to Chat Me Up...'),
+                                TyperAnimatedText(
+                                    'I use  Flutter and React for Mobile Apps...'),
+                                TyperAnimatedText('I\'m  17 years young...'),
                               ],
                               onTap: () {
                                 print("Tap Event");

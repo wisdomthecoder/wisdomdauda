@@ -11,6 +11,7 @@ import 'package:wisdomdauda/view/desktop/services_pages.dart';
 import '../../constants/constants.dart';
 import '../widgets/appbartitle.dart';
 import 'about.dart';
+import 'contact.dart';
 
 class DesktopHome extends StatefulWidget {
   const DesktopHome({super.key});
@@ -32,7 +33,7 @@ class _DesktopHomeState extends State<DesktopHome> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Color.fromARGB(255, 0, 0, 0),
-        leadingWidth: 150,
+        leadingWidth: width(context) / 5.6,
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -113,7 +114,7 @@ class _DesktopHomeState extends State<DesktopHome> {
         ],
         leading: Center(
             child: Text(
-          'The Dev'.toUpperCase(),
+          'Wisdom The Coder'.toUpperCase(),
           style: GoogleFonts.poppins(
             fontSize: 15,
             color: tealAccent,
@@ -121,41 +122,59 @@ class _DesktopHomeState extends State<DesktopHome> {
           ),
         )),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+          foregroundColor: Colors.pink,
+          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          icon: Icon(Icons.keyboard_arrow_down),
+          label: Text('Contact Me'),
+          onPressed: () async {
+            await Scrollable.ensureVisible(contact.currentContext!,
+                duration: Duration(seconds: 2));
+          }),
       backgroundColor: Color.fromARGB(255, 43, 42, 42),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(70),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Color.fromARGB(255, 0, 0, 0),
+          image: DecorationImage(
+              image: AssetImage(
+                'assets/background/back2.jpeg',
               ),
-              child: HomePage(
-                key: home,
+              opacity: .2,
+              fit: BoxFit.cover),
+        ),
+        child: SingleChildScrollView(
+          physics: PageScrollPhysics(),
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(70),
+                ),
+                child: HomePage(
+                  key: home,
+                ),
               ),
-            ),
-            About(
-              key: about,
-            ),
-            Services(
-              key: services,
-            ),
-            Container(
-              key: downloads,
-              width: width(context),
-              height: height(context),
-              color: Colors.primaries[Random().nextInt(
-                Colors.primaries.length,
-              )],
-            ),
-            Container(
-              key: contact,
-              width: width(context),
-              height: height(context) - kToolbarHeight,
-              color: Colors.primaries[Random().nextInt(
-                Colors.primaries.length,
-              )],
-            )
-          ],
+              About(
+                key: about,
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(70),
+                ),
+                child: Services(
+                  key: services,
+                ),
+              ),
+              Container(
+                  key: downloads,
+                  width: width(context),
+                  height: height(context) - kToolbarHeight,
+                  color: Color.fromARGB(122, 109, 109, 109)),
+              Contact(
+                key: contact,
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marquee/marquee.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wisdomdauda/constants/url.dart';
 
@@ -18,20 +19,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool hover = false;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width(context),
       height: height(context) - kToolbarHeight,
-      decoration: BoxDecoration(
-        color: Color.fromARGB(255, 0, 0, 0),
-        image: DecorationImage(
-            image: AssetImage(
-              'assets/background/back2.jpeg',
-            ),
-            opacity: .2,
-            fit: BoxFit.cover),
-      ),
       child: Column(
         children: [
           Expanded(
@@ -116,53 +109,34 @@ class _HomePageState extends State<HomePage> {
                           child: SizedBox(
                             width: width(context) / 3,
                             height: 50,
-                            child: Container(
-                              padding: EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Colors.white,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Row(children: [
-                                  Expanded(
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                          border: UnderlineInputBorder(
-                                            borderSide:
-                                                BorderSide(color: Colors.blue),
-                                          ),
-                                          hintText: '   Type Message Here',
-                                          hintStyle:
-                                              TextStyle(color: Colors.blue)),
-                                    ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(50),
+                              child: Row(children: [
+                                SizedBox(
+                                  height: double.infinity,
+                                  width: 300,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(50),
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.blue),
+                                        onPressed: () {},
+                                        child: Row(
+                                          children: [
+                                            Icon(FontAwesomeIcons.facebookF,
+                                                color: Colors.white),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              'Send a Quick Hi on Facebook',
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                          ],
+                                        )),
                                   ),
-                                  SizedBox(
-                                    height: double.infinity,
-                                    width: 150,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.blue),
-                                          onPressed: () {},
-                                          child: Row(
-                                            children: [
-                                              Icon(FontAwesomeIcons.facebookF,
-                                                  color: Colors.white),
-                                              SizedBox(
-                                                width: 10,
-                                              ),
-                                              Text(
-                                                'Facebook',
-                                                style: TextStyle(fontSize: 15),
-                                              ),
-                                            ],
-                                          )),
-                                    ),
-                                  )
-                                ]),
-                              ),
+                                )
+                              ]),
                             ),
                           ),
                         ),
@@ -178,9 +152,26 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
-                          child: Image(
-                            colorBlendMode: BlendMode.colorBurn,
-                            image: AssetImage('assets/images/wisdom.png'),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                elevation: 1,
+                                shadowColor: Colors.pink,
+                                backgroundColor: Colors.transparent),
+                            onPressed: () {},
+                            onHover: (value) {
+                              hover = value;
+                              setState(() {});
+                            },
+                            child: Hero(
+                              tag: '1',
+                              child: Image(
+                                colorBlendMode: BlendMode.colorBurn,
+                                fit: BoxFit.cover,
+                                image: AssetImage(hover == false
+                                    ? 'assets/images/wisdom.png'
+                                    : 'assets/images/wisdom1.png'),
+                              ),
+                            ),
                           )),
                     ))
               ],

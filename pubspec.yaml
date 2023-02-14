@@ -41,6 +41,7 @@ dependencies:
   url_launcher: ^6.1.9
   entry: ^0.0.8+1
   font_awesome_flutter: ^10.3.0
+  marquee: ^2.2.3
 
 dev_dependencies:
   flutter_test:
